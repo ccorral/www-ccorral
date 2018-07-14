@@ -33,7 +33,7 @@ export default function Help() {
     return (
         <div className="shellText">
             <div className="help-header">Carlos Corral</div>
-            <div className="help-subheader">Greetings! Welcome to Carlos Site.</div>
+            <div className="help-subheader">Greetings! Welcome to Carlos' Site.</div>
             <div className="help-subheader">This is a self-sufficient runtime for getting to know me. Enjoy!</div>
             <div className="help-header">Commands</div>
             <div className="help-subheader">
