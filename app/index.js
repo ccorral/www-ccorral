@@ -1,21 +1,29 @@
-import { AppContainer } from 'react-hot-loader';
-import { render } from 'react-dom';
 import React from 'react';
-import App from './pages/App';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { AppContainer } from 'react-hot-loader';
+import createHistory from 'history/createBrowserHistory'
+import history from './history';
 
-render(
-    <AppContainer><App /></AppContainer>,
-    document.getElementById('root')
-);
+import configureStore from './store';
+import Root from './root';
+
+const store = configureStore();
+
+function render(Component) {
+    ReactDOM.render(
+        <AppContainer>
+            <Component history={history} store={store} />
+        </AppContainer>,
+        document.getElementById('root')
+    )
+}
 
 if (module && module.hot) {
-    module.hot.accept('./pages/App', () => {
-        const NewApp = require('./pages/App').default;
-        render(
-            <AppContainer>
-                <NewApp />
-            </AppContainer>,
-            document.getElementById('root')
-        );
+    module.hot.accept('./root', () => {
+        const NewRoot = require('./root').default;
+        render(NewRoot);
     });
 }
+
+render(Root);

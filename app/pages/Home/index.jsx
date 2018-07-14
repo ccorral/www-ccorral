@@ -1,61 +1,96 @@
 import React, { Component } from 'react';
-import Draggable from 'react-draggable';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import Help from './Help';
+
 import './styles.less';
+import { CIcon } from './CIcon';
 
-const message_intro = "HI,";
-const message_body_1 = "I'M A SOFTWARE ENGINEER WITH PRODUCT AND DESIGN EXPERIENCE WHO'S PASSIONATE ABOUT CREATING MEANINGFUL AND SOPHISTICATED PRODUCTS.";
-const message_body_2 = "CURRENTLY, YOU CAN FIND ME AT AIRMAP WHERE I'M PART OF THE PLATFORM ENGINEERING TEAM BUILDING MODERN JAVASCRIPT WEB APPLICATIONS AND MICROSERVICES IN NODE AND GO.";
+import actions from './actions';
+import * as selectors from './selectors';
 
-export default class extends Component {
+class Home extends Component {
 
-    shouldComponentUpdate() {
-        return false;
+    state = {
+    	input: ''
     }
-  
-    render() {
-        return (
-            <div className="home_page_container">
-                <div className="frame">
-                    <div className="message_paragraph intro">
-                        <Draggable>
-                            <div className="font">{message_intro}</div>
-                        </Draggable>
-                    </div>
-                    <div className="message_paragraph body_1">
-                        {message_body_1.split(' ').map((word, index) => (
-                            <Draggable
-                                key={`message_body_1-${index}`}
-                            >
-                                <div id={`message_body_1-${index}`} className="font">{word}</div>
-                            </Draggable>
-                        ))}
-                    </div>
-                    <div className="message_paragraph">
-                        {message_body_2.split(' ').map((word, index) => (
-                            <Draggable
-                                key={`message_body_2-${index}`}
-                            >
-                                <div id={`message_body_2-${index}`} className="font">{word}</div>
-                            </Draggable>
-                        ))}
-                    </div>
-                    <div className="message_paragraph">
-                        <Draggable>
-                            <div className="font">BEST,</div>
-                        </Draggable>
-                    </div>
-                    <div className="message_paragraph">
-                        <Draggable>
-                            <div className="font">CARLOS CORRAL</div>
-                        </Draggable>
-                    </div>
-                </div>
-                <div className="coffee_message">
-                    Have fun with the letterboard! Send me something clever and I may just buy you coffee.
-                    <a href="mailto:emailccorral@gmail.com"> Email me a screenshot.</a>
-                </div>
-            </div>        
-        );
+
+    componentDidMount() {
+        document.getElementById("input-field").focus();
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault()
+        const { newCommand } = this.props;
+        newCommand(this.state.input)
+        this.setState({
+            input: ''
+        })
     }
     
+    handleChange = (e) => {
+        if (e.target.value.length > 84) return
+        this.setState({
+            input: e.target.value
+        })
+    }
+    
+    setAutoFocus = () => {
+        document.getElementById("input-field").focus();
+    }
+
+    render() {
+        const {
+
+        } = this.state
+        const {
+            commandHistory
+        } = this.props
+        return (
+            <div className="mac-window" onClick={this.setAutoFocus}>
+                <div className="window-control-bar">
+                <div className="window-control red"></div>
+                <div className="window-control yellow"></div>
+                <div className="window-control green"></div>
+                </div>
+                <div className="text-window">
+                <div>
+                    {commandHistory.map((item, index) => {
+                        if (item.text === 'CMDS_HELP') {
+                            return (
+                                <Help key={`${item.text}-${index}`} />
+                            )
+                        } else {
+                            return (
+                                <div key={`${item.text}-${index}`} className="shell-line">
+                                    <div className="shell-text">
+                                        {item.text}
+                                    </div>
+                                </div>
+                            )
+                        }
+                    })}
+                </div>
+                <div className="shell-line-input">
+                    <form onSubmit={this.onSubmit} style={{ width: '100%' }}>
+                        <input id="input-field" className="input" onChange={this.handleChange} value={this.state.input}></input>
+                    </form>
+                </div>
+            </div>
+        </div>
+        )
+    }
 }
+
+const mapStateToProps = (state, ownProps) => ({
+    commandHistory: selectors.getCommandHistory(state)
+})
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    newCommand: (command) => dispatch(actions.newCommand(command))
+})
+
+export default withRouter(connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Home));
