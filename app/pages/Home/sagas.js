@@ -24,8 +24,14 @@ function* parseCommand(action) {
             yield delay(500)
             yield put(actions.newCommandFulfilled(actions.CMDS_HI, 'hi'))
             break;
-        case 'help':
+            case 'help':
             yield put(actions.newCommandFulfilled(actions.CMDS_HELP, 'help'))
+            break;
+        case 'bio':
+            yield delay(500)
+            yield put(actions.newCommandFulfilled(actions.ADD_TO_COMMAND_LIST, 'Taking you to LinkedIn...!'))
+            yield delay(1000)
+            window.open('https://www.linkedin.com/in/corralcarlos', '_blank')
             break;
         case 'linkedin':
             yield delay(500)

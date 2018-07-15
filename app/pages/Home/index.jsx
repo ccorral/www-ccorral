@@ -49,35 +49,35 @@ class Home extends Component {
         return (
             <div className="mac-window" onClick={this.setAutoFocus}>
                 <div className="window-control-bar">
-                <div className="window-control red"></div>
-                <div className="window-control yellow"></div>
-                <div className="window-control green"></div>
+                    <div className="window-control red"></div>
+                    <div className="window-control yellow"></div>
+                    <div className="window-control green"></div>
                 </div>
                 <div className="text-window">
-                <div>
-                    {commandHistory.map((item, index) => {
-                        if (item.text === 'CMDS_HELP') {
-                            return (
-                                <Help key={`${item.text}-${index}`} />
-                            )
-                        } else {
-                            return (
-                                <div key={`${item.text}-${index}`} className="shell-line">
-                                    <div className="shell-text">
-                                        {item.text}
+                    <div>
+                        {commandHistory.map((item, index) => {
+                            if (item.text === 'CMDS_HELP') {
+                                return (
+                                    <Help key={`${item.text}-${index}`} />
+                                )
+                            } else {
+                                return (
+                                    <div key={`${item.text}-${index}`} className="shell-line">
+                                        <div className="shell-text">
+                                            {item.text}
+                                        </div>
                                     </div>
-                                </div>
-                            )
-                        }
-                    })}
-                </div>
-                <div className="shell-line-input">
-                    <form onSubmit={this.onSubmit} style={{ width: '100%' }}>
-                        <input id="input-field" className="input" onChange={this.handleChange} value={this.state.input}></input>
-                    </form>
+                                )
+                            }
+                        })}
+                    </div>
+                    <div className="shell-line-input">
+                        <form onSubmit={this.onSubmit} style={{ width: '100%' }}>
+                            <input id="input-field" className="input" onChange={this.handleChange} value={this.state.input}></input>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
         )
     }
 }
