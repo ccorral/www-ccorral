@@ -19,6 +19,14 @@ class Home extends Component {
         document.getElementById("input-field").focus();
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.commandHistory.length > prevProps.commandHistory.length) {
+            console.log('UPDATED');
+            const element = document.getElementById("text-window");
+            element.scrollTop = element.scrollHeight;
+        }
+    }
+
     onSubmit = (e) => {
         e.preventDefault()
         const { newCommand } = this.props;
@@ -53,7 +61,7 @@ class Home extends Component {
                     <div className="window-control yellow"></div>
                     <div className="window-control green"></div>
                 </div>
-                <div className="text-window">
+                <div id="text-window" className="text-window">
                     <div>
                         {commandHistory.map((item, index) => {
                             if (item.text === 'CMDS_HELP') {
@@ -73,7 +81,7 @@ class Home extends Component {
                     </div>
                     <div className="shell-line-input">
                         <form onSubmit={this.onSubmit} style={{ width: '100%' }}>
-                            <input id="input-field" className="input" onChange={this.handleChange} value={this.state.input}></input>
+                            <input id="input-field" className="input" type="text" onChange={this.handleChange} value={this.state.input}></input>
                         </form>
                     </div>
                 </div>

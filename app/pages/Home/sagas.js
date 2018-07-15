@@ -29,9 +29,12 @@ function* parseCommand(action) {
             break;
         case 'bio':
             yield delay(500)
-            yield put(actions.newCommandFulfilled(actions.ADD_TO_COMMAND_LIST, 'Taking you to LinkedIn...!'))
-            yield delay(1000)
-            window.open('https://www.linkedin.com/in/corralcarlos', '_blank')
+            yield put(actions.newCommandFulfilled(actions.ADD_TO_COMMAND_LIST, `
+                Hi again! I'm Carlos.
+                I'm a software engineer with a passion for front-end development and design.
+                I live in Los Angeles with a little family and love exploring our city via food, art, and architecture.
+                I'll be updating this bio a little later. In the meantime, visit some of my social network links.
+            `))
             break;
         case 'linkedin':
             yield delay(500)
@@ -68,8 +71,6 @@ function* parseCommand(action) {
             yield put(actions.newCommandFulfilled(actions.ADD_TO_COMMAND_LIST, 'You can email me at emailccorral@gmail.com.'))
             break;
         default:
-            const parsed = yield parse(text)
-            const command = parsed._[0]
             yield delay(500)
             yield put(actions.newCommandFulfilled(actions.DIDNT_RECOGNIZE_COMMAND))
             break;

@@ -8,8 +8,8 @@ const managementCommands = [
         description: '- what even is this? list helpful commands'
     },
     {
-        command: 'tell me about yourself',
-        description: '- what even is this? list helpful commands'
+        command: 'bio',
+        description: '- tell me about yourself'
     },
     {
         command: 'linkedin',

@@ -4,6 +4,9 @@ export const initialState = {
     commandHistory: [
         { text: 'CMDS_HELP' },
         // { text: 'Hello! Welcome to Carlos' website }
+    ],
+    userHistory: [
+        { text: 'Arrow up for more commands' }
     ]
 };
 

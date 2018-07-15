@@ -8,12 +8,17 @@
     display: flex;
     align-items: center;
     margin-top: -2px;
+    align-self: flex-end;
 }
 
 .shell-line-input::before {
     content: '$';
     color: white;
     padding-right: 4px;
+}
+
+.shell-line-input input[type=text] {
+    font-size: 0.75rem;
 }
 
 .shell-text {
@@ -46,6 +51,9 @@
 }
 
 .mac-window {
+  display: flex;
+  flex-direction: column;
+  min-height: auto;
   height: 75%;
   width: 75%;
   border-radius: 10px;
@@ -57,7 +65,6 @@
 
 .text-window {
   max-height: 100%;
-  position: relative;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   background-color: black;
@@ -68,7 +75,7 @@
 
 .window-control-bar {
   width: 100%;
-  padding: 0px 10px;
+  padding: 0px 12px;
   display: flex;
   justify-content: flex-start;
 }
@@ -84,12 +91,15 @@
 
 .red {
   background-color: #df6961;
+  margin: 8px 4px 12px 4px;
 }
 
 .yellow {
   background-color: #f2bc57;
+  margin: 8px 4px 12px 4px;
 }
 
 .green {
   background-color: #6bb358;
+  margin: 8px 4px 12px 4px;
 }
