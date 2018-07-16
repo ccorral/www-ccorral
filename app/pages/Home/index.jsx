@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import Help from './Help';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import Help from './Help'
 
-import './styles.less';
-import { CIcon } from './CIcon';
+import './styles.less'
 
-import actions from './actions';
-import * as selectors from './selectors';
+import actions from './actions'
+import * as selectors from './selectors'
 
 class Home extends Component {
 
@@ -16,20 +15,19 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        document.getElementById("input-field").focus();
+        document.getElementById("input-field").focus()
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.commandHistory.length > prevProps.commandHistory.length) {
-            console.log('UPDATED');
-            const element = document.getElementById("text-window");
-            element.scrollTop = element.scrollHeight;
+            const element = document.getElementById("text-window")
+            element.scrollTop = element.scrollHeight
         }
     }
 
     onSubmit = (e) => {
         e.preventDefault()
-        const { newCommand } = this.props;
+        const { newCommand } = this.props
         newCommand(this.state.input)
         this.setState({
             input: ''
@@ -44,7 +42,7 @@ class Home extends Component {
     }
     
     setAutoFocus = () => {
-        document.getElementById("input-field").focus();
+        document.getElementById("input-field").focus()
     }
 
     render() {
@@ -101,4 +99,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(Home));
+)(Home))

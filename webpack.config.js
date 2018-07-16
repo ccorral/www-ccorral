@@ -82,7 +82,6 @@ module.exports = {
   
   plugins: [
     new Dotenv({
-      path: './.env',
       safe: true
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),

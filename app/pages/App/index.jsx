@@ -1,12 +1,18 @@
-import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
+import amplitude from 'amplitude-js'
 
-import './styles.less';
+import './styles.less'
 
-import Home from '../Home';
-import NotFound from '../NotFound';
+import Home from '../Home'
+import NotFound from '../NotFound'
 
 export default class App extends Component {
+
+    componentDidMount() {
+        amplitude.getInstance().logEvent('app-pageload')
+    }
+
     render() {
         return (
             <div className="app">
@@ -15,6 +21,6 @@ export default class App extends Component {
                     <Route component={NotFound}/>
                 </Switch>
             </div>
-        );
+        )
     }
 }

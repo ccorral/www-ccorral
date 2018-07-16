@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { AppContainer } from 'react-hot-loader';
-import createHistory from 'history/createBrowserHistory'
-import history from './history';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
+import history from './history'
+import amplitude from 'amplitude-js'
 
-import configureStore from './store';
-import Root from './root';
+import configureStore from './store'
+import Root from './root'
 
-const store = configureStore();
+const store = configureStore()
+amplitude.getInstance().init(process.env.AMPLITUDE_API_KEY)
 
 function render(Component) {
     ReactDOM.render(
@@ -21,9 +21,9 @@ function render(Component) {
 
 if (module && module.hot) {
     module.hot.accept('./root', () => {
-        const NewRoot = require('./root').default;
-        render(NewRoot);
-    });
+        const NewRoot = require('./root').default
+        render(NewRoot)
+    })
 }
 
-render(Root);
+render(Root)

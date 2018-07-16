@@ -1,13 +1,15 @@
-import actions from './actions';
-import { delay } from 'redux-saga';
-import { all, call, fork, put, take, takeEvery, takeLatest } from 'redux-saga/effects';
+import actions from './actions'
+import { delay } from 'redux-saga'
+import { all, call, fork, put, take, takeEvery, takeLatest } from 'redux-saga/effects'
+import amplitude from 'amplitude-js'
+
 
 //=====================================
 //  WATCHERS
 //-------------------------------------
 
 export function* watchCommand(action) {
-    yield takeLatest(actions.NEW_COMMAND, parseCommand);
+    yield takeLatest(actions.NEW_COMMAND, parseCommand)
 }
 
 //=====================================
@@ -16,17 +18,18 @@ export function* watchCommand(action) {
 
 function* parseCommand(action) {
     const text = action.payload.command.toLowerCase()
+    amplitude.getInstance().logEvent('home-user_submitted_command')
     switch (text) {
         case 'clear':
             yield put(actions.newCommandFulfilled(actions.CMDS_CLEAR, 'clear'))
-            break;
+            break
         case 'hi':
             yield delay(500)
             yield put(actions.newCommandFulfilled(actions.CMDS_HI, 'hi'))
-            break;
+            break
             case 'help':
             yield put(actions.newCommandFulfilled(actions.CMDS_HELP, 'help'))
-            break;
+            break
         case 'bio':
             yield delay(500)
             yield put(actions.newCommandFulfilled(actions.ADD_TO_COMMAND_LIST, `
@@ -35,51 +38,51 @@ function* parseCommand(action) {
                 I live in Los Angeles with a little family and love exploring our city via food, art, and architecture.
                 I'll be updating this bio a little later. In the meantime, visit some of my social network links.
             `))
-            break;
+            break
         case 'linkedin':
             yield delay(500)
             yield put(actions.newCommandFulfilled(actions.ADD_TO_COMMAND_LIST, 'Taking you to LinkedIn...!'))
             yield delay(1000)
             window.open('https://www.linkedin.com/in/corralcarlos', '_blank')
-            break;
+            break
         case 'github':
             yield delay(500)
             yield put(actions.newCommandFulfilled(actions.ADD_TO_COMMAND_LIST, 'Taking you to GitHub...!'))
             yield delay(1000)
             window.open('https://www.github.com/ccorral', '_blank')
-            break;
+            break
         case 'twitter':
             yield delay(500)
             yield put(actions.newCommandFulfilled(actions.ADD_TO_COMMAND_LIST, 'Taking you to Twitter...!'))
             yield delay(1000)
             window.open('https://twitter.com/carloscorral', '_blank')
-            break;
+            break
         case 'behance':
             yield delay(500)
             yield put(actions.newCommandFulfilled(actions.ADD_TO_COMMAND_LIST, 'Taking you to Behance...!'))
             yield delay(1000)
             window.open('https://www.behance.net/carloscorral', '_blank')
-            break;
+            break
         case 'resume':
             yield delay(500)
             yield put(actions.newCommandFulfilled(actions.ADD_TO_COMMAND_LIST, 'Taking you to my resume...!'))
             yield delay(1000)
             window.open('https://drive.google.com/open?id=1G5qTXrN7brP6WMORIbL4vG1FAh2sHcRj', '_blank')
-            break;
+            break
         case 'email':
             yield delay(500)
             yield put(actions.newCommandFulfilled(actions.ADD_TO_COMMAND_LIST, 'You can email me at emailccorral@gmail.com.'))
-            break;
+            break
         default:
             yield delay(500)
             yield put(actions.newCommandFulfilled(actions.DIDNT_RECOGNIZE_COMMAND))
-            break;
+            break
     }
 }
 
 
 const aboutSagas = [
   fork(watchCommand)
-];
+]
 
 export default aboutSagas

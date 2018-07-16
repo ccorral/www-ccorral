@@ -27,6 +27,6 @@ const actions = {
         payload: { command }
     })
 
-};
+}
 
-export default actions;
+export default actions
