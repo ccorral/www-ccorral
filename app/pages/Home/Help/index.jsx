@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './styles.less';
 
@@ -31,14 +31,29 @@ const managementCommands = [
         command: 'resume',
         description: '- open my resume in a new window'
     },
-];
+    {
+        command: 'music',
+        description: '- what do i am listening to'
+    },
+    {
+        command: 'food',
+        description: '- where do i am eating'
+    },
+    {
+        command: 'drink',
+        description: '- what i am drinking'
+    },
+    {
+        command: 'coffee',
+        description: '- what i am sipping on'
+    },
+]
 
 export default function Help() {
     return (
         <div className="shellText">
             <div className="help-header">Carlos Corral</div>
-            <div className="help-subheader">Greetings! Welcome to Carlos' Site.</div>
-            <div className="help-subheader">This is a self-sufficient runtime for getting to know me. Enjoy!</div>
+            <div className="help-subheader">Greetings! Welcome to Carlos' Site. Self-sufficient runtime for getting to know me. Enjoy!</div>
             <div className="help-header">Commands</div>
             <div className="help-subheader">
                 {managementCommands.map((mgmntCommand, index) => (

@@ -9,6 +9,10 @@ const actions = {
     CMDS_CLEAR: 'CMDS_CLEAR',
     CMDS_HELP: 'CMDS_HELP',
     CMDS_HI: 'CMDS_HI',
+    CMDS_MUSIC: 'CMDS_MUSIC',
+    CMDS_FOOD: 'CMDS_FOOD',
+    CMDS_DRINK: 'CMDS_DRINK',
+    CMDS_COFFEE: 'CMDS_COFFEE',
 
     newCommand: command => ({
         type: actions.NEW_COMMAND,
@@ -25,7 +29,7 @@ const actions = {
     newCommandFulfilled: (type, command) => ({
         type,
         payload: { command }
-    })
+    }),
 
 }
 

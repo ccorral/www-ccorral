@@ -73,6 +73,22 @@ function* parseCommand(action) {
             yield delay(500)
             yield put(actions.newCommandFulfilled(actions.ADD_TO_COMMAND_LIST, 'You can email me at emailccorral@gmail.com.'))
             break
+        case 'music':
+            yield delay(500)
+            yield put(actions.newCommandFulfilled(actions.CMDS_MUSIC, 'music'))
+            break
+        case 'food':
+            yield delay(500)
+            yield put(actions.newCommandFulfilled(actions.CMDS_FOOD, 'food'))
+            break
+        case 'drink':
+            yield delay(500)
+            yield put(actions.newCommandFulfilled(actions.CMDS_DRINK, 'drink'))
+            break
+        case 'coffee':
+            yield delay(500)
+            yield put(actions.newCommandFulfilled(actions.CMDS_COFFEE, 'coffee'))
+            break
         default:
             yield delay(500)
             yield put(actions.newCommandFulfilled(actions.DIDNT_RECOGNIZE_COMMAND))

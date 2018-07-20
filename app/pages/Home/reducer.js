@@ -50,6 +50,38 @@ export function homeReducer(state = initialState, { type, payload }) {
                     { text: 'CMDS_HELP' }
                 ]
             }
+        case actions.CMDS_MUSIC:
+            return {
+                ...state,
+                commandHistory: [
+                    ...state.commandHistory,
+                    { text: 'CMDS_MUSIC' }
+                ]
+            }
+        case actions.CMDS_FOOD:
+            return {
+                ...state,
+                commandHistory: [
+                    ...state.commandHistory,
+                    { text: 'CMDS_FOOD' }
+                ]
+            }
+        case actions.CMDS_DRINK:
+            return {
+                ...state,
+                commandHistory: [
+                    ...state.commandHistory,
+                    { text: 'CMDS_DRINK' }
+                ]
+            }
+        case actions.CMDS_COFFEE:
+            return {
+                ...state,
+                commandHistory: [
+                    ...state.commandHistory,
+                    { text: 'CMDS_COFFEE' }
+                ]
+            }
         case actions.DIDNT_RECOGNIZE_COMMAND:
             return {
                 ...state,

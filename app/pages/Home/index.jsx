@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import Help from './Help'
+import Music from './Music'
+import Food from './Food'
+import Drink from './Drink'
+import Coffee from './Coffee'
 
 import './styles.less'
 
@@ -66,7 +70,23 @@ class Home extends Component {
                                 return (
                                     <Help key={`${item.text}-${index}`} />
                                 )
-                            } else {
+                            } else if (item.text === 'CMDS_MUSIC') {
+                                return (
+                                    <Music key={`${item.text}-${index}`} />
+                                )
+                            } else if (item.text === 'CMDS_FOOD') {
+                                return (
+                                    <Food key={`${item.text}-${index}`} />
+                                )
+                            } else if (item.text === 'CMDS_DRINK') {
+                                return (
+                                    <Drink key={`${item.text}-${index}`} />
+                                )
+                            } else if (item.text === 'CMDS_COFFEE') {
+                                return (
+                                    <Coffee key={`${item.text}-${index}`} />
+                                )
+                             } else {
                                 return (
                                     <div key={`${item.text}-${index}`} className="shell-line">
                                         <div className="shell-text">
