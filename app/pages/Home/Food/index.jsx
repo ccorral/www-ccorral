@@ -30,13 +30,11 @@ export default function Music() {
         <div className="shellText">
             <div className="help-header">Restaurants I'd Recommend</div>
             <div className="help-subheader">Links to restaurants via Yelp</div>
-            <div className="help-header">List</div>
             <div className="help-subheader">
                 {food.map((item, index) => (
                     <div key={`help-${index}`} className="managementCommands">
-                        <div className="command">{item.name}</div>
                         <a className="description" href={item.href} target="_blank">
-                            LAUNCH
+                            {item.name}
                         </a>
                     </div>
                 ))}

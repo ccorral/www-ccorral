@@ -24,15 +24,13 @@ const drink = [
 export default function Drink() {
     return (
         <div className="shellText">
-            <div className="help-header">Restaurants I'd Recommend</div>
-            <div className="help-subheader">Links to restaurants via Yelp</div>
-            <div className="help-header">List</div>
+            <div className="help-header">Spirits and Cocktails</div>
+            <div className="help-subheader">Booz and their history or recipes</div>
             <div className="help-subheader">
                 {drink.map((item, index) => (
                     <div key={`help-${index}`} className="managementCommands">
-                        <div className="command">{item.name}</div>
-                        <a className="description" href={item.href} target="_blank">
-                            LAUNCH
+                        <a className="command" href={item.href} target="_blank">
+                        {item.name}
                         </a>
                     </div>
                 ))}

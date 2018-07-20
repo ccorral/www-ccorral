@@ -26,7 +26,6 @@ export default function Coffee() {
         <div className="shellText">
             <div className="help-header">Coffee shops who take our money</div>
             <div className="help-subheader">These are solid and mostly in our neighborhood.</div>
-            <div className="help-header">List</div>
             <div className="help-subheader">
                 {coffee.map((item, index) => (
                     <div key={`help-${index}`} className="managementCommands">

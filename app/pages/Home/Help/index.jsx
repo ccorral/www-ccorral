@@ -33,19 +33,19 @@ const managementCommands = [
     },
     {
         command: 'music',
-        description: '- what do i am listening to'
+        description: `- what i'm listening to`
     },
     {
         command: 'food',
-        description: '- where do i am eating'
+        description: `- where i'm eating`
     },
     {
         command: 'drink',
-        description: '- what i am drinking'
+        description: `- what i'm drinking`
     },
     {
         command: 'coffee',
-        description: '- what i am sipping on'
+        description: `- what i'm sipping on`
     },
 ]
 
