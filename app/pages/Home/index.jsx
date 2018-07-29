@@ -15,7 +15,8 @@ import * as selectors from './selectors'
 class Home extends Component {
 
     state = {
-    	input: ''
+        input: '',
+        userHistoryIndex: 0
     }
 
     componentDidMount() {
@@ -47,6 +48,24 @@ class Home extends Component {
     
     setAutoFocus = () => {
         document.getElementById("input-field").focus()
+    }
+
+    handleOnKeyPress = (e) => {
+        const { userHistory } = this.props
+        const { input, userHistoryIndex } = this.state
+        if (e.keyCode === 38 && !input && (userHistoryIndex <= userHistory.length)) {
+            console.log(userHistory[userHistoryIndex]);
+            this.setState({
+                input: userHistory[userHistoryIndex].text,
+                userHistoryIndex: userHistoryIndex + 1
+            })
+        } else if (e.keyCode === 40 && (userHistoryIndex >= 0)) {
+            console.log(userHistory[userHistoryIndex]);
+            this.setState({
+                input: userHistory[userHistoryIndex].text,
+                userHistoryIndex: userHistoryIndex - 1
+            })
+        }
     }
 
     render() {
@@ -99,7 +118,14 @@ class Home extends Component {
                     </div>
                     <div className="shell-line-input">
                         <form onSubmit={this.onSubmit} style={{ width: '100%' }}>
-                            <input id="input-field" className="input" type="text" onChange={this.handleChange} value={this.state.input}></input>
+                            <input
+                                id="input-field"
+                                className="input"
+                                type="text"
+                                onChange={this.handleChange}
+                                value={this.state.input}
+                                onKeyDown={this.handleOnKeyPress}
+                            />
                         </form>
                     </div>
                 </div>
@@ -109,7 +135,8 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    commandHistory: selectors.getCommandHistory(state)
+    commandHistory: selectors.getCommandHistory(state),
+    userHistory: selectors.getUserHistory(state)
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

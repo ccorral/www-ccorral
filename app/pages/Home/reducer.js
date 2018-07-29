@@ -5,9 +5,7 @@ export const initialState = {
         { text: 'CMDS_HELP' },
         // { text: 'Hello! Welcome to Carlos' website }
     ],
-    userHistory: [
-        { text: 'Arrow up for more commands' }
-    ]
+    userHistory: [],
 }
 
 
@@ -26,6 +24,10 @@ export function homeReducer(state = initialState, { type, payload }) {
                 ...state,
                 commandHistory: [
                     ...state.commandHistory,
+                    { text: payload.command }
+                ],
+                userHistory: [
+                    ...state.userHistory,
                     { text: payload.command }
                 ]
             }

@@ -59,7 +59,7 @@ export default function Help() {
                 {managementCommands.map((mgmntCommand, index) => (
                     <div key={`help-${index}`} className="managementCommands">
                         <div className="command">{mgmntCommand.command}</div>
-                        <div className="description">{mgmntCommand.description}</div>
+                        <div className="helpDescription">{mgmntCommand.description}</div>
                     </div>
                 ))}
             </div>

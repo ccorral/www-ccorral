@@ -5,7 +5,7 @@ import './styles.less';
 const coffee = [
     {
         name: 'Blue Bottle - Oat Milk Capp',
-        location: 'Venice, Culver City, Playa Vista'
+        location: 'Culver City / Playa Vista'
     },
     {
         name: 'Alanas Coffee',
